@@ -51,7 +51,7 @@ Terminal Technology Department, Alipay, Ant Group.
 * [2024.11.22] 🔥 [ComfyUI](https://github.com/smthemex/ComfyUI_EchoMimic) is now available. Thanks @smthemex for the contribution.
 * [2024.11.21] 🔥 We release the EMTD dataset list and processing scripts.
 * [2024.11.21] 🔥 We release our [EchoMimicV2](https://github.com/antgroup/echomimic_v2) codes and models. -->
-<!-- * [2025.08.08] 🔥 We release our [codes](https://arxiv.org/abs/2507.03905). -->
+* [2025.08.08] 🔥 We release our [codes](https://arxiv.org/abs/2507.03905).
 * [2025.07.08] 🔥 Our [paper](https://arxiv.org/abs/2507.03905) is in public on arxiv.
 
 ## &#x1F305; Gallery
@@ -88,23 +88,19 @@ pip install -r requirements.txt
 
 | Models        |                       Download Link                                           |    Notes                      |
 | --------------|-------------------------------------------------------------------------------|-------------------------------|
-| Wan2.1-FUN-1.3B  |      🤗 [Huggingface](TBD)       | Base model
-| wav2vec2-base |      🤗 [Huggingface](TBD)          | Audio encoder
-| EchoMimicV3      |      🤗 [Huggingface](TBD)              | Our weights
+| Wan2.1-Fun-1.3B-InP  |      🤗 [Huggingface](https://huggingface.co/spaces/alibaba-pai/Wan2.1-Fun-1.3B-InP)       | Base model
+| wav2vec2-base |      🤗 [Huggingface](https://huggingface.co/facebook/wav2vec2-base-960h)          | Audio encoder
+| EchoMimicV3      |      🤗 [Huggingface](https://huggingface.co/BadToBest/EchoMimicV3)              | Our weights
 
-<!-- The **pretrained_weights** is organized as follows.
+-- The **weights** is organized as follows.
 
 ```
 ./models/
-├── denoising_unet.pth
-├── reference_unet.pth
-├── motion_module.pth
-├── pose_encoder.pth
-├── sd-vae-ft-mse
-│   └── ...
-└── audio_processor
-    └── tiny.pt
-``` -->
+├── Wan2.1-Fun-1.3B-InP
+├── wav2vec2-base-960h
+└── transformer
+    └── diffusion_pytorch_model.safetensors
+``` 
 ### 🔑 Quick Inference
 ```
 python infer.py
