@@ -59,6 +59,9 @@ Terminal Technology Department, Alipay, Ant Group.
 <p align="center">
   <img src="asset/echomimicv3.jpg"  height=700>
 </p>
+<p align="center">
+  <img src="asset/algo_framework.jpg"  height=700>
+</p>
 <table class="center">
 <tr>
     <td width=100% style="border: none">
