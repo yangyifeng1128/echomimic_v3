@@ -122,7 +122,7 @@ python infer.py
 | Status | Milestone                                                                |     
 |:--------:|:-------------------------------------------------------------------------|
 |    2025.08.08    | The inference code of EchoMimicV3 meet everyone on GitHub   | 
-|    🚀    | Preview version Pretrained models trained on English and Chinese on HuggingFace | 
+|    2025.08.08   | EchoMimicV3-preview model on HuggingFace | 
 |    🚀    | Preview version Pretrained models trained on English and Chinese on ModelScope   | 
 |    🚀    | 720P Pretrained models trained on English and Chinese on HuggingFace | 
 |    🚀    | 720P Pretrained models trained on English and Chinese on ModelScope   | 
