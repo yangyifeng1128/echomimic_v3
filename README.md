@@ -95,7 +95,7 @@ pip install -r requirements.txt
 | --------------|-------------------------------------------------------------------------------|-------------------------------|
 | Wan2.1-Fun-1.3B-InP  |      🤗 [Huggingface](https://huggingface.co/spaces/alibaba-pai/Wan2.1-Fun-1.3B-InP)       | Base model
 | wav2vec2-base |      🤗 [Huggingface](https://huggingface.co/facebook/wav2vec2-base-960h)          | Audio encoder
-| EchoMimicV3      |      🤗 [Huggingface](https://huggingface.co/BadToBest/EchoMimicV3)              | Our weights
+| EchoMimicV3-preview      |      🤗 [Huggingface](https://huggingface.co/BadToBest/EchoMimicV3)              | Our weights
 
 -- The **weights** is organized as follows.
 
