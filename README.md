@@ -35,6 +35,10 @@ Terminal Technology Department, Alipay, Ant Group.
     <a href='https://github.com/antgroup/echomimic_v3/discussions/1'><img src='https://img.shields.io/badge/中文版-常见问题汇总-orange'></a>
 </div> -->
 
+<p align="center">
+  <img src="asset/algo_framework.jpg"  height=700>
+</p>
+
 ## &#x1F680; EchoMimic Series
 * EchoMimicV3: 1.3B Parameters are All You Need for Unified Multi-Modal and Multi-Task Human Animation. [GitHub](https://github.com/antgroup/echomimic_v3)
 * EchoMimicV2: Towards Striking, Simplified, and Semi-Body Human Animation. [GitHub](https://github.com/antgroup/echomimic_v2)
@@ -58,9 +62,6 @@ Terminal Technology Department, Alipay, Ant Group.
 ## &#x1F305; Gallery
 <p align="center">
   <img src="asset/echomimicv3.jpg"  height=700>
-</p>
-<p align="center">
-  <img src="asset/algo_framework.jpg"  height=700>
 </p>
 <table class="center">
 <tr>
