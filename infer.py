@@ -57,7 +57,7 @@ class Config:
 
         # Paths
         self.config_path = "config/config.yaml"
-        self.model_name = "models/Wan2.1-Fun-V1.1-1.3B-InP"
+        self.model_name = "models/Wan2.1-Fun-1.3B-InP"
         self.transformer_path = "models/transformer/diffusion_pytorch_model.safetensors"
         self.vae_path = None
 
@@ -92,14 +92,8 @@ class Config:
         # Test data paths
         self.base_dir = "datasets/echomimicv3_demos/"
         self.test_name_list = [
-            'guitar_woman_01','guitar_man_01',
-            'demo_cartoon_03','demo_cartoon_04',
-            '2025-07-14-1036','2025-07-14-1942',
-            '2025-07-14-2371','2025-07-14-3927',
-            '2025-07-14-4513','2025-07-14-6032',
-            '2025-07-14-7113','2025-07-14-7335',
+            'demo_ch_man_01','demo_ch_woman_04',
             ]
-
         self.wav2vec_model_dir = "models/wav2vec2-base-960h"
         self.save_path = "outputs"
 
@@ -172,7 +166,6 @@ def main():
     transformer = WanTransformerAudioMask3DModel.from_pretrained(
         os.path.join(config.model_name, cfg['transformer_additional_kwargs'].get('transformer_subpath', 'transformer')),
         transformer_additional_kwargs=OmegaConf.to_container(cfg['transformer_additional_kwargs']),
-        low_cpu_mem_usage=True if not config.fsdp_dit else False,
         torch_dtype=config.weight_dtype,
     )
     if config.transformer_path is not None:
@@ -197,7 +190,6 @@ def main():
     text_encoder = WanT5EncoderModel.from_pretrained(
         os.path.join(config.model_name, cfg['text_encoder_kwargs'].get('text_encoder_subpath', 'text_encoder')),
         additional_kwargs=OmegaConf.to_container(cfg['text_encoder_kwargs']),
-        low_cpu_mem_usage=True,
         torch_dtype=config.weight_dtype,
     ).eval()
 
@@ -245,7 +237,7 @@ def main():
         ref_img_path = get_file_path(config.base_dir, "imgs", test_name, ["png", "jpeg", "jpg"])
         audio_path = os.path.join(config.base_dir, "audios", f"{test_name}.WAV")
         ip_mask_path = os.path.join(config.base_dir, "masks", f"{test_name}.npy")
-        prompt_path = os.path.join(config.base_dir, "prompts_dev", f"{test_name}.txt")
+        prompt_path = os.path.join(config.base_dir, "prompts", f"{test_name}.txt")
     
         if not os.path.exists(ref_img_path):
             print (f"{ref_img_path} not exists, skip")
