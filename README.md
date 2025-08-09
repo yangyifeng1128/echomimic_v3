@@ -96,6 +96,7 @@ pip install -r requirements.txt
 | Wan2.1-Fun-1.3B-InP  |      🤗 [Huggingface](https://huggingface.co/alibaba-pai/Wan2.1-Fun-1.3B-InP)       | Base model
 | wav2vec2-base |      🤗 [Huggingface](https://huggingface.co/facebook/wav2vec2-base-960h)          | Audio encoder
 | EchoMimicV3-preview      |      🤗 [Huggingface](https://huggingface.co/BadToBest/EchoMimicV3)              | Our weights
+| EchoMimicV3-preview      |      🤗 [ModelScope](https://modelscope.cn/models/BadToBest/EchoMimicV3)              | Our weights
 
 -- The **weights** is organized as follows.
 
@@ -123,6 +124,7 @@ python infer.py
 |:--------:|:-------------------------------------------------------------------------|
 |    2025.08.08    | The inference code of EchoMimicV3 meet everyone on GitHub   | 
 |    2025.08.08   | EchoMimicV3-preview model on HuggingFace | 
+|    2025.08.0   | EchoMimicV3-preview model on ModelScope | 
 |    🚀    | Preview version Pretrained models trained on English and Chinese on ModelScope   | 
 |    🚀    | 720P Pretrained models trained on English and Chinese on HuggingFace | 
 |    🚀    | 720P Pretrained models trained on English and Chinese on ModelScope   | 
