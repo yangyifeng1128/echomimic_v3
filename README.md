@@ -56,7 +56,8 @@ Terminal Technology Department, Alipay, Ant Group.
 * [2024.11.22] 🔥 [ComfyUI](https://github.com/smthemex/ComfyUI_EchoMimic) is now available. Thanks @smthemex for the contribution.
 * [2024.11.21] 🔥 We release the EMTD dataset list and processing scripts.
 * [2024.11.21] 🔥 We release our [EchoMimicV2](https://github.com/antgroup/echomimic_v2) codes and models. -->
-* [2025.08.08] 🔥 We release our [codes](https://github.com/antgroup/echomimic_v3) and [models](https://huggingface.co/BadToBest/EchoMimicV3).
+* [2025.08.09] 🔥 We release our [models](https://modelscope.cn/models/BadToBest/EchoMimicV3) on ModelScope.
+* [2025.08.08] 🔥 We release our [codes](https://github.com/antgroup/echomimic_v3) and [models](https://huggingface.co/BadToBest/EchoMimicV3) on Huggingface.
 * [2025.07.08] 🔥 Our [paper](https://arxiv.org/abs/2507.03905) is in public on arxiv.
 
 ## &#x1F305; Gallery
@@ -124,7 +125,8 @@ python infer.py
 |:--------:|:-------------------------------------------------------------------------|
 |    2025.08.08    | The inference code of EchoMimicV3 meet everyone on GitHub   | 
 |    2025.08.08   | EchoMimicV3-preview model on HuggingFace | 
-|    2025.08.0   | EchoMimicV3-preview model on ModelScope | 
+|    2025.08.09   | EchoMimicV3-preview model on ModelScope | 
+｜🚀  ｜ ModelScope Space|
 |    🚀    | Preview version Pretrained models trained on English and Chinese on ModelScope   | 
 |    🚀    | 720P Pretrained models trained on English and Chinese on HuggingFace | 
 |    🚀    | 720P Pretrained models trained on English and Chinese on ModelScope   | 
