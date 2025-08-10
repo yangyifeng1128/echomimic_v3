@@ -81,7 +81,7 @@ For more demo videos, please refer to the project page.
 - Tested Python Version: 3.10 / 3.11
 
 ### 🛠️Installation
-#### 1. Create a conda environment and install pytorch, xformers
+#### 1. Create a conda environment
 ```
 conda create -n echomimic_v3 python=3.10
 conda activate echomimic_v3
@@ -148,6 +148,14 @@ If you find our work useful for your research, please consider citing the paper 
   archivePrefix={arXiv}
 }
 ```
+## 📜 License
+The models in this repository are licensed under the Apache 2.0 License. We claim no rights over the your generated contents, 
+granting you the freedom to use them while ensuring that your usage complies with the provisions of this license. 
+You are fully accountable for your use of the models, which must not involve sharing any content that violates applicable laws, 
+causes harm to individuals or groups, disseminates personal information intended for harm, spreads misinformation, or targets vulnerable populations. 
+
 
 ## &#x1F31F; Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=antgroup/echomimic_v3&type=Date)](https://www.star-history.com/#antgroup/echomimic_v3&Date)
+
+
