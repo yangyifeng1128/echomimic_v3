@@ -124,9 +124,9 @@ python app.py
 ## 📝 TODO List
 | Status | Milestone                                                                |     
 |:--------:|:-------------------------------------------------------------------------|
-|    2025.08.08    | The inference code of EchoMimicV3 meet everyone on GitHub   | 
-|    2025.08.08   | EchoMimicV3-preview model on HuggingFace | 
-|    2025.08.09   | EchoMimicV3-preview model on ModelScope | 
+|    ✅    | The inference code of EchoMimicV3 meet everyone on GitHub   | 
+|    ✅   | EchoMimicV3-preview model on HuggingFace | 
+|    ✅   | EchoMimicV3-preview model on ModelScope | 
 |    🚀  | ModelScope Space | 
 |    🚀    | Preview version Pretrained models trained on English and Chinese on ModelScope   | 
 |    🚀    | 720P Pretrained models trained on English and Chinese on HuggingFace | 
