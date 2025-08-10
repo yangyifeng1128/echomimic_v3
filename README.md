@@ -28,7 +28,7 @@ Terminal Technology Department, Alipay, Ant Group.
     <!-- <a href='https://modelscope.cn/models/BadToBest/EchoMimicV3'><img src='https://img.shields.io/badge/ModelScope-Model-purple'></a> -->
     <!--<a href='https://antgroup.github.io/ai/echomimic_v2/'><img src='https://img.shields.io/badge/ModelScope-Demo-purple'></a>-->
     <!-- <a href='https://openaccess.thecvf.com/content/CVPR2025/papers/Meng_EchoMimicV2_Towards_Striking_Simplified_and_Semi-Body_Human_Animation_CVPR_2025_paper.pdf'><img src='https://img.shields.io/badge/Paper-CVPR2025-blue'></a> -->
-English | [简体中文](./README_.md) 
+  
 </div>
 <!-- <div align='center'>
     <a href='https://github.com/antgroup/echomimic_v3/discussions/0'><img src='https://img.shields.io/badge/English-Common Problems-orange'></a>
@@ -38,7 +38,7 @@ English | [简体中文](./README_.md)
 <p align="center">
   <img src="asset/algo_framework.jpg"  height=700>
 </p>
-
+English | [简体中文](./README_zh.md) 
 ## &#x1F680; EchoMimic Series
 * EchoMimicV3: 1.3B Parameters are All You Need for Unified Multi-Modal and Multi-Task Human Animation. [GitHub](https://github.com/antgroup/echomimic_v3)
 * EchoMimicV2: Towards Striking, Simplified, and Semi-Body Human Animation. [GitHub](https://github.com/antgroup/echomimic_v2)
