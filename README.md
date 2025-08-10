@@ -28,7 +28,7 @@ Terminal Technology Department, Alipay, Ant Group.
     <!-- <a href='https://modelscope.cn/models/BadToBest/EchoMimicV3'><img src='https://img.shields.io/badge/ModelScope-Model-purple'></a> -->
     <!--<a href='https://antgroup.github.io/ai/echomimic_v2/'><img src='https://img.shields.io/badge/ModelScope-Demo-purple'></a>-->
     <!-- <a href='https://openaccess.thecvf.com/content/CVPR2025/papers/Meng_EchoMimicV2_Towards_Striking_Simplified_and_Semi-Body_Human_Animation_CVPR_2025_paper.pdf'><img src='https://img.shields.io/badge/Paper-CVPR2025-blue'></a> -->
-    
+English | [简体中文](./README_.md) 
 </div>
 <!-- <div align='center'>
     <a href='https://github.com/antgroup/echomimic_v3/discussions/0'><img src='https://img.shields.io/badge/English-Common Problems-orange'></a>
@@ -148,6 +148,9 @@ If you find our work useful for your research, please consider citing the paper 
   archivePrefix={arXiv}
 }
 ```
+## Reference
+- Wan2.1: https://github.com/Wan-Video/Wan2.1/
+- VideoX-Fun: https://github.com/aigc-apps/VideoX-Fun/
 ## 📜 License
 The models in this repository are licensed under the Apache 2.0 License. We claim no rights over the your generated contents, 
 granting you the freedom to use them while ensuring that your usage complies with the provisions of this license. 
