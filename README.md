@@ -1,3 +1,4 @@
+[简体中文](https://github.com/antgroup/echomimic_v3/blob/main/README_zh.md) | English 
 <p align="center">
   <img src="asset/EchoMimicV3_logo.png.jpg"  height=60>
 </p>
@@ -38,7 +39,7 @@ Terminal Technology Department, Alipay, Ant Group.
 <p align="center">
   <img src="asset/algo_framework.jpg"  height=700>
 </p>
-English | [简体中文](./README_zh.md) 
+
 ## &#x1F680; EchoMimic Series
 * EchoMimicV3: 1.3B Parameters are All You Need for Unified Multi-Modal and Multi-Task Human Animation. [GitHub](https://github.com/antgroup/echomimic_v3)
 * EchoMimicV2: Towards Striking, Simplified, and Semi-Body Human Animation. [GitHub](https://github.com/antgroup/echomimic_v2)
