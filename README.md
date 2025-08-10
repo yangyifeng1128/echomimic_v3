@@ -40,12 +40,6 @@ Terminal Technology Department, Alipay, Ant Group.
   <img src="asset/algo_framework.jpg"  height=700>
 </p>
 
-## &#x1F680; EchoMimic Series
-* EchoMimicV3: 1.3B Parameters are All You Need for Unified Multi-Modal and Multi-Task Human Animation. [GitHub](https://github.com/antgroup/echomimic_v3)
-* EchoMimicV2: Towards Striking, Simplified, and Semi-Body Human Animation. [GitHub](https://github.com/antgroup/echomimic_v2)
-* EchoMimicV1: Lifelike Audio-Driven Portrait Animations through Editable Landmark Conditioning. [GitHub](https://github.com/antgroup/echomimic)
-
-
 ## &#x1F4E3; Updates
 <!-- * [2025.02.27] 🔥 EchoMimicV2 is accepted by CVPR 2025.
 * [2025.01.16] 🔥 Please check out the [discussions](https://github.com/antgroup/echomimic_v2/discussions) to learn how to start EchoMimicV2.
@@ -61,6 +55,11 @@ Terminal Technology Department, Alipay, Ant Group.
 * [2025.08.09] 🔥 We release our [models](https://modelscope.cn/models/BadToBest/EchoMimicV3) on ModelScope.
 * [2025.08.08] 🔥 We release our [codes](https://github.com/antgroup/echomimic_v3) and [models](https://huggingface.co/BadToBest/EchoMimicV3) on Huggingface.
 * [2025.07.08] 🔥 Our [paper](https://arxiv.org/abs/2507.03905) is in public on arxiv.
+
+## &#x1F680; EchoMimic Series
+* EchoMimicV3: 1.3B Parameters are All You Need for Unified Multi-Modal and Multi-Task Human Animation. [GitHub](https://github.com/antgroup/echomimic_v3)
+* EchoMimicV2: Towards Striking, Simplified, and Semi-Body Human Animation. [GitHub](https://github.com/antgroup/echomimic_v2)
+* EchoMimicV1: Lifelike Audio-Driven Portrait Animations through Editable Landmark Conditioning. [GitHub](https://github.com/antgroup/echomimic)
 
 ## &#x1F305; Gallery
 <p align="center">
