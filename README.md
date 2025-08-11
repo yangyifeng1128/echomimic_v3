@@ -71,6 +71,11 @@ Terminal Technology Department, Alipay, Ant Group.
         <video controls loop src="https://github.com/user-attachments/assets/f33edb30-66b1-484b-8be0-a5df20a44f3b" muted="false"></video>
     </td>
 </tr>
+<tr>
+    <td width=100% style="border: none">
+        <video controls loop src="https://github.com/user-attachments/assets/056105d8-47cd-4a78-8ec2-328ceaf95a5a" muted="false"></video>
+    </td>
+</tr>
 </table>
 For more demo videos, please refer to the project page.
 
