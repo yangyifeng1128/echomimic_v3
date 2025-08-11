@@ -80,11 +80,11 @@ class Config:
         self.shift = 5.0
         self.use_un_ip_mask = False
 
-        self.partial_video_length = 113
+        self.partial_video_length = 65
         self.overlap_video_length = 8
         self.neg_scale = 1.5
         self.neg_steps = 2
-        self.guidance_scale = 4.5 #4.0 ~ 6.0
+        self.guidance_scale = 4.5 #3.0 ~ 6.0
         self.audio_guidance_scale = 2.5 #2.0 ~ 3.0
         self.use_dynamic_cfg = True
         self.use_dynamic_acfg = True
