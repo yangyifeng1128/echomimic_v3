@@ -118,12 +118,13 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
-> Tips
-> - Audio CFG: Audio CFG works optimally between 2~3. Increase the audio CFG value for better lip synchronization, while decreasing the audio CFG value can improve the visual quality.
-> - Text CFG: Text CFG works optimally between 4~6. Increase the text CFG value for better prompt following, while decreasing the text CFG value can improve the visual quality.
-> - TeaCache: The optimal range for `--teacache_thresh` is between 0~0.1.
+#### Tips
+> - Audio CFG: Audio CFG `audio_guidance_scale` works optimally between 2~3. Increase the audio CFG value for better lip synchronization, while decreasing the audio CFG value can improve the visual quality.
+> - Text CFG: Text CFG `guidance_scale` works optimally between 3~6. Increase the text CFG value for better prompt following, while decreasing the text CFG value can improve the visual quality.
+> - TeaCache: The optimal range for `teacache_threshold` is between 0~0.1.
 > - Sampling steps: 5 steps for talking head, 15~25 steps for talking body. 
 > - ​Long video generation: If you want to generate a video longer than 138 frames, you can use Long Video CFG.
+> - Try setting partial_video_length to 81, 65 or smaller to reduce VRAM usage.
 
 
 ## 📝 TODO List
