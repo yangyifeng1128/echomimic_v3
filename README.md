@@ -124,7 +124,7 @@ python app.py
 > - TeaCache: The optimal range for `teacache_threshold` is between 0~0.1.
 > - Sampling steps: 5 steps for talking head, 15~25 steps for talking body. 
 > - ​Long video generation: If you want to generate a video longer than 138 frames, you can use Long Video CFG.
-> - Try setting partial_video_length to 81, 65 or smaller to reduce VRAM usage.
+> - Try setting `partial_video_length` to 81, 65 or smaller to reduce VRAM usage.
 
 
 ## 📝 TODO List
