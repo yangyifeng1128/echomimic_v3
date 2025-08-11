@@ -124,6 +124,7 @@ python app.py
 > - TeaCache：`--teacache_thresh` 的最佳范围为 0~0.1。
 > - 采样步数：头部动画为 5 步，全身动作为 15~25 步。
 > - ​长视频生成：如果需要生成超过 138 帧的视频，可以使用长视频 CFG。
+> - 尝试降低partial_video_length节省显存。
 
 
 ## 📝 待办事项
