@@ -80,7 +80,7 @@ class Config:
         self.shift = 5.0
         self.use_un_ip_mask = False
 
-        self.partial_video_length = 49
+        self.partial_video_length = 113
         self.overlap_video_length = 8
         self.neg_scale = 1.5
         self.neg_steps = 2
