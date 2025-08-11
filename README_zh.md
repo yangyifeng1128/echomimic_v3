@@ -109,7 +109,7 @@ pip install -r requirements.txt
 
 ```
 ./models/
-├── Wan2.1-Fun-1.3B-InP
+├── Wan2.1-Fun-V1.1-1.3B-InP
 ├── wav2vec2-base-960h
 └── transformer
     └── diffusion_pytorch_model.safetensors
