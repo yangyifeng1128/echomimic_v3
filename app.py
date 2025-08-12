@@ -282,78 +282,78 @@ def generate(
     new_sample = None
 
     # Precompute mix_ratio outside the loop
-        mix_ratio = torch.linspace(0, 1, steps=config.overlap_video_length).view(1, 1, -1, 1, 1)
+    mix_ratio = torch.linspace(0, 1, steps=config.overlap_video_length).view(1, 1, -1, 1, 1)
 
-        while init_frames < video_length:
-            if last_frames >= video_length:
-                partial_video_length = video_length - init_frames
-                partial_video_length = (
-                    int((partial_video_length - 1) // vae.config.temporal_compression_ratio * vae.config.temporal_compression_ratio) + 1
-                    if video_length != 1 else 1
-                )
-                latent_frames = (partial_video_length - 1) // vae.config.temporal_compression_ratio + 1
-
-                if partial_video_length <= 0:
-                    break
-
-            input_video, input_video_mask, _ = get_image_to_video_latent3(
-                ref_img, None, video_length=partial_video_length, sample_size=[sample_height, sample_width]
+    while init_frames < video_length:
+        if last_frames >= video_length:
+            partial_video_length = video_length - init_frames
+            partial_video_length = (
+                int((partial_video_length - 1) // vae.config.temporal_compression_ratio * vae.config.temporal_compression_ratio) + 1
+                if video_length != 1 else 1
             )
-    
-            partial_audio_embeds = audio_embeds[:, init_frames * 2 : (init_frames + partial_video_length) * 2]
-            # video_length = init_frames + partial_video_length
-            with torch.no_grad():
-                sample = pipeline(
-                    prompt,
-                    num_frames            = partial_video_length,
-                    negative_prompt       = config.negative_prompt,
-                    audio_embeds          = partial_audio_embeds,
-                    audio_scale           = config.audio_scale,
-                    ip_mask               = ip_mask,
-                    use_un_ip_mask        = config.use_un_ip_mask,
-                    height                = sample_height,
-                    width                 = sample_width,
-                    generator             = generator,
-                    neg_scale             = config.neg_scale,
-                    neg_steps             = config.neg_steps,
-                    use_dynamic_cfg       = config.use_dynamic_cfg,
-                    use_dynamic_acfg      = config.use_dynamic_acfg,
-                    guidance_scale        = config.guidance_scale,
-                    audio_guidance_scale  = config.audio_guidance_scale,
-                    num_inference_steps   = config.num_inference_steps,
-                    video                 = input_video,
-                    mask_video            = input_video_mask,
-                    clip_image            = clip_image,
-                    cfg_skip_ratio        = config.cfg_skip_ratio,
-                    shift                 = config.shift,
-                ).videos
-            
-            if init_frames != 0:
-                
+            latent_frames = (partial_video_length - 1) // vae.config.temporal_compression_ratio + 1
 
-                new_sample[:, :, -config.overlap_video_length:] = (
-                    new_sample[:, :, -config.overlap_video_length:] * (1 - mix_ratio) +
-                    sample[:, :, :config.overlap_video_length] * mix_ratio
-                )
-                new_sample = torch.cat([new_sample, sample[:, :, config.overlap_video_length:]], dim=2)
-                sample = new_sample
-            else:
-                new_sample = sample
-
-            if last_frames >= video_length:
+            if partial_video_length <= 0:
                 break
 
-            ref_img = [
-                Image.fromarray(
-                    (sample[0, :, i].transpose(0, 1).transpose(1, 2) * 255).numpy().astype(np.uint8)
-                ) for i in range(-config.overlap_video_length, 0)
-            ]
+        input_video, input_video_mask, _ = get_image_to_video_latent3(
+            ref_img, None, video_length=partial_video_length, sample_size=[sample_height, sample_width]
+        )
 
-            init_frames += partial_video_length - config.overlap_video_length
-            last_frames = init_frames + partial_video_length
+        partial_audio_embeds = audio_embeds[:, init_frames * 2 : (init_frames + partial_video_length) * 2]
+        # video_length = init_frames + partial_video_length
+        with torch.no_grad():
+            sample = pipeline(
+                prompt,
+                num_frames            = partial_video_length,
+                negative_prompt       = config.negative_prompt,
+                audio_embeds          = partial_audio_embeds,
+                audio_scale           = config.audio_scale,
+                ip_mask               = ip_mask,
+                use_un_ip_mask        = config.use_un_ip_mask,
+                height                = sample_height,
+                width                 = sample_width,
+                generator             = generator,
+                neg_scale             = config.neg_scale,
+                neg_steps             = config.neg_steps,
+                use_dynamic_cfg       = config.use_dynamic_cfg,
+                use_dynamic_acfg      = config.use_dynamic_acfg,
+                guidance_scale        = config.guidance_scale,
+                audio_guidance_scale  = config.audio_guidance_scale,
+                num_inference_steps   = config.num_inference_steps,
+                video                 = input_video,
+                mask_video            = input_video_mask,
+                clip_image            = clip_image,
+                cfg_skip_ratio        = config.cfg_skip_ratio,
+                shift                 = config.shift,
+            ).videos
+        
+        if init_frames != 0:
+            
 
-            del input_video, input_video_mask, partial_audio_embeds
-            torch.cuda.empty_cache()  # Release unused memory
+            new_sample[:, :, -config.overlap_video_length:] = (
+                new_sample[:, :, -config.overlap_video_length:] * (1 - mix_ratio) +
+                sample[:, :, :config.overlap_video_length] * mix_ratio
+            )
+            new_sample = torch.cat([new_sample, sample[:, :, config.overlap_video_length:]], dim=2)
+            sample = new_sample
+        else:
+            new_sample = sample
+
+        if last_frames >= video_length:
+            break
+
+        ref_img = [
+            Image.fromarray(
+                (sample[0, :, i].transpose(0, 1).transpose(1, 2) * 255).numpy().astype(np.uint8)
+            ) for i in range(-config.overlap_video_length, 0)
+        ]
+
+        init_frames += partial_video_length - config.overlap_video_length
+        last_frames = init_frames + partial_video_length
+
+        del input_video, input_video_mask, partial_audio_embeds
+        torch.cuda.empty_cache()  # Release unused memory
             
     # Save generated video
     video_path = os.path.join(save_path, f"{timestamp}.mp4")
