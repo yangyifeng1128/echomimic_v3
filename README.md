@@ -109,7 +109,7 @@ pip install -r requirements.txt
 ``` 
 ### 🔑 Quick Inference
 ```
-python app.py
+python app_mm.py
 ```
 **images, audios, masks and prompts are provided in `datasets/echomimicv3_demos`**
 
