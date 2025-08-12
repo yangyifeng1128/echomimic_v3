@@ -446,13 +446,13 @@ class WanFunInpaintAudioPipeline(DiffusionPipeline):
                 f" {negative_prompt_embeds}. Please make sure to only forward one of the two."
             )
 
-        if prompt_embeds is not None and negative_prompt_embeds is not None:
+        """if prompt_embeds is not None and negative_prompt_embeds is not None:
             if prompt_embeds.shape != negative_prompt_embeds.shape:
                 raise ValueError(
                     "`prompt_embeds` and `negative_prompt_embeds` must have the same shape when passed directly, but"
                     f" got: `prompt_embeds` {prompt_embeds.shape} != `negative_prompt_embeds`"
                     f" {negative_prompt_embeds.shape}."
-                )
+                )"""
 
     @property
     def guidance_scale(self):
@@ -546,12 +546,7 @@ class WanFunInpaintAudioPipeline(DiffusionPipeline):
         self._interrupt = False
 
         # 2. Default call parameters
-        if prompt is not None and isinstance(prompt, str):
-            batch_size = 1
-        elif prompt is not None and isinstance(prompt, list):
-            batch_size = len(prompt)
-        else:
-            batch_size = prompt_embeds.shape[0]
+        batch_size = 1
 
         device = self._execution_device
         weight_dtype = self.text_encoder.dtype
@@ -562,16 +557,17 @@ class WanFunInpaintAudioPipeline(DiffusionPipeline):
         do_classifier_free_guidance = guidance_scale > 1.0
 
         # 3. Encode input prompt
-        prompt_embeds, negative_prompt_embeds = self.encode_prompt(
-            prompt,
-            negative_prompt,
-            do_classifier_free_guidance,
-            num_videos_per_prompt=num_videos_per_prompt,
-            prompt_embeds=prompt_embeds,
-            negative_prompt_embeds=negative_prompt_embeds,
-            max_sequence_length=max_sequence_length,
-            device=device,
-        )
+        if not prompt_embeds or not negative_prompt_embeds:
+            prompt_embeds, negative_prompt_embeds = self.encode_prompt(
+                prompt,
+                negative_prompt,
+                do_classifier_free_guidance,
+                num_videos_per_prompt=num_videos_per_prompt,
+                prompt_embeds=prompt_embeds,
+                negative_prompt_embeds=negative_prompt_embeds,
+                max_sequence_length=max_sequence_length,
+                device=device,
+            )
         if do_classifier_free_guidance:
             in_prompt_embeds = negative_prompt_embeds + prompt_embeds + prompt_embeds
         else:
