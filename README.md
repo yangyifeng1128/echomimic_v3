@@ -42,7 +42,6 @@ Terminal Technology Department, Alipay, Ant Group.
 
 ## &#x1F4E3; Updates
 * [2025.08.12] 🔥 **12G VRAM is All YOU NEED to Generate Video**, [GradioUI](https://github.com/antgroup/echomimic_v3/blob/main/app_mm.py) are released. Check the [tutorial](https://www.bilibili.com/video/BV1W8tdzEEVN) from @[gluttony-10](https://github.com/gluttony-10). Thanks for the contribution.
-* EchoMimicV3 can run on **16G VRAM** using [ComfyUI](https://github.com/smthemex/ComfyUI_EchoMimic). Thanks @[smthemex](https://github.com/smthemex) for the contribution.
 * [2025.08.12] 🔥 EchoMimicV3 can run on **16G VRAM** using [ComfyUI](https://github.com/smthemex/ComfyUI_EchoMimic). Thanks @[smthemex](https://github.com/smthemex) for the contribution.
 * [2025.08.10] 🔥 [GradioUI](https://github.com/antgroup/echomimic_v3/blob/main/app.py) is now available. Thanks @[gluttony-10](https://github.com/gluttony-10) for the contribution.
 * [2025.08.09] 🔥 We release our [models](https://modelscope.cn/models/BadToBest/EchoMimicV3) on ModelScope.
