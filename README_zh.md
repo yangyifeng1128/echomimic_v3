@@ -77,7 +77,8 @@
     </td>
 </tr>
 </table>
-更多演示视频，请访问[项目主页](https://antgroup.github.io/ai/echomimic_v3/)。
+
+更多演示视频，请访问[项目主页](https://antgroup.github.io/ai/echomimic_v3/)
 
 ## 快速开始
 ### 环境配置
