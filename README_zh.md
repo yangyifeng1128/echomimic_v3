@@ -56,6 +56,7 @@
 * [2024.11.22] 🔥 [ComfyUI](https://github.com/smthemex/ComfyUI_EchoMimic) 已发布，感谢 @smthemex 的贡献。
 * [2024.11.21] 🔥 我们发布了 EMTD 数据集列表和处理脚本。
 * [2024.11.21] 🔥 我们发布了 [EchoMimicV2](https://github.com/antgroup/echomimic_v2) 的代码和模型。 -->
+* [2025.08.12] 🔥 [ComfyUI](https://github.com/smthemex/ComfyUI_EchoMimic) 已发布. 感谢 @smthemex的贡献。
 * [2025.08.10] 🔥 [GradioUI](https://github.com/antgroup/echomimic_v3/blob/main/app.py) 已发布，感谢 @[gluttony-10](https://github.com/gluttony-10) 的贡献。
 * [2025.08.09] 🔥 我们在 ModelScope 上发布了 [模型](https://modelscope.cn/models/BadToBest/EchoMimicV3)。
 * [2025.08.08] 🔥 我们在 Huggingface 上发布了 [代码](https://github.com/antgroup/echomimic_v3) 和 [模型](https://huggingface.co/BadToBest/EchoMimicV3)。
