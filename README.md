@@ -126,6 +126,10 @@ pip install -r requirements.txt
 ``` 
 ### 🔑 Quick Inference
 ```
+python infer.py
+```
+For Quantified GradioUI version:
+```
 python app_mm.py
 ```
 **images, audios, masks and prompts are provided in `datasets/echomimicv3_demos`**
