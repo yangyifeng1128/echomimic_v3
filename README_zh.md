@@ -109,7 +109,7 @@ pip install -r requirements.txt
 ``` 
 ### 🔑 快速推理
 ```
-python app.py
+python app_mm.py
 ```
 #### 提示
 > - 音频 CFG：音频 CFG `audio_guidance_scale` 最佳范围为 2~3。增加音频 CFG 值可以改善唇同步效果，减少音频 CFG 值可以提高视觉质量。
