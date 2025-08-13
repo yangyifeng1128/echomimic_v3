@@ -41,7 +41,7 @@
 </p>
 
 ## &#x1F4E3; 更新日志
-* [2025.08.12] 🔥 **仅需12G显存生成视频**, 量化版本[GradioUI](https://github.com/antgroup/echomimic_v3/blob/main/app_mm.py)发布. 查看 [教程](https://www.bilibili.com/video/BV1W8tdzEEVN)。感谢@[gluttony-10](https://github.com/gluttony-10)贡献.
+* [2025.08.12] 🔥 **仅需12G显存生成视频**, 量化版本[GradioUI](https://github.com/antgroup/echomimic_v3/blob/main/app_mm.py)发布。 查看 [教程](https://www.bilibili.com/video/BV1W8tdzEEVN)。感谢@[gluttony-10](https://github.com/gluttony-10)贡献。
 * [2025.08.12] 🔥 EchoMimicV3支持16G显存，使用[ComfyUI](https://github.com/smthemex/ComfyUI_EchoMimic). 感谢 @[smthemex](https://github.com/smthemex)的贡献。
 * [2025.08.10] 🔥 [GradioUI](https://github.com/antgroup/echomimic_v3/blob/main/app.py) 已发布，感谢 @[gluttony-10](https://github.com/gluttony-10) 的贡献。
 * [2025.08.09] 🔥 我们在 ModelScope 上发布了 [模型](https://modelscope.cn/models/BadToBest/EchoMimicV3)。
