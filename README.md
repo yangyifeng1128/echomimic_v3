@@ -73,16 +73,16 @@ Terminal Technology Department, Alipay, Ant Group.
 ### Chinese Driven Audio
 <table class="center">
 <tr>
-    <td width=30% style="border: none">
+    <td width=25% style="border: none">
         <video controls loop src="https://github.com/user-attachments/assets/306dd246-0873-4fef-83a2-738b560a0af1" muted="false"></video>
     </td>
-    <td width=30% style="border: none">
+    <td width=25% style="border: none">
         <video controls loop src="https://github.com/user-attachments/assets/7b12335a-88e3-46f8-8577-356e1c00cbdd" muted="false"></video>
     </td>
-    <td width=30% style="border: none">
+    <td width=25% style="border: none">
         <video controls loop src="https://github.com/user-attachments/assets/ea40f327-c57a-4a5d-a852-a8e12df041f3" muted="false"></video>
     </td>
-    <td width=30% style="border: none">
+    <td width=25% style="border: none">
         <video controls loop src="https://github.com/user-attachments/assets/6fea35a3-dc80-43a7-83b3-f24c97113619" muted="false"></video>
     </td>
 </tr>
