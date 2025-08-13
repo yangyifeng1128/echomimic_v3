@@ -40,12 +40,6 @@
   <img src="asset/algo_framework.jpg"  height=700>
 </p>
 
-## &#x1F680; EchoMimic 系列
-* EchoMimicV3: 13亿参数即可实现统一多模态、多任务人体动画生成。[GitHub](https://github.com/antgroup/echomimic_v3)
-* EchoMimicV2: 面向震撼、简化、半身人体动画生成。[GitHub](https://github.com/antgroup/echomimic_v2)
-* EchoMimicV1: 基于可编辑关键点条件的逼真语音驱动肖像动画生成。[GitHub](https://github.com/antgroup/echomimic)
-
-
 ## &#x1F4E3; 更新日志
 * [2025.08.12] 🔥 **仅需12G显存生成视频**, 量化版本[GradioUI](https://github.com/antgroup/echomimic_v3/blob/main/app_mm.py)发布. 查看 [教程](https://www.bilibili.com/video/BV1W8tdzEEVN)。感谢@[gluttony-10](https://github.com/gluttony-10)贡献.
 * [2025.08.12] 🔥 EchoMimicV3支持16G显存，使用[ComfyUI](https://github.com/smthemex/ComfyUI_EchoMimic). 感谢 @[smthemex](https://github.com/smthemex)的贡献。
@@ -146,12 +140,16 @@ python app_mm.py
 |    ✅    | EchoMimicV3 推理代码已发布至 GitHub   | 
 |    ✅   | EchoMimicV3-preview 模型已发布至 HuggingFace | 
 |    ✅   | EchoMimicV3-preview 模型已发布至 ModelScope | 
-|    🚀  | ModelScope Space | 
+|    🚀  | 在线体验版 | 
 |    🚀    | 英文和中文预训练模型（Preview 版本）已发布至 ModelScope   | 
 |    🚀    | 英文和中文预训练模型（720P）已发布至 HuggingFace | 
 |    🚀    | 英文和中文预训练模型（720P）已发布至 ModelScope   | 
 |    🚀    | EchoMimicV3 训练代码已发布至 GitHub   | 
 
+## &#x1F680; EchoMimic 系列
+* EchoMimicV3: 13亿参数即可实现统一多模态、多任务人体动画生成。[GitHub](https://github.com/antgroup/echomimic_v3)
+* EchoMimicV2: 面向震撼、简化、半身人体动画生成。[GitHub](https://github.com/antgroup/echomimic_v2)
+* EchoMimicV1: 基于可编辑关键点条件的逼真语音驱动肖像动画生成。[GitHub](https://github.com/antgroup/echomimic)
 
 
 ## &#x1F4D2; 引用
