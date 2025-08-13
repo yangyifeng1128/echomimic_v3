@@ -409,9 +409,9 @@ with gr.Blocks(theme=gr.themes.Base()) as demo:
                 prompt = gr.Textbox(label="提示词", value="")
                 negative_prompt = gr.Textbox(label="负面提示词", value="Gesture is bad. Gesture is unclear. Strange and twisted hands. Bad hands. Bad fingers. Unclear and blurry hands. 手部快速摆动, 手指频繁抽搐, 夸张手势, 重复机械性动作.")
                 partial_video_length = gr.Slider(label="分段长度", info="24G显存推荐113，16G显存推荐81，12G显存推荐49", minimum=49, maximum=161, step=16, value=113)
-                guidance_scale = gr.Slider(label="guidance scale", info="修改分段长度后调整，推荐范围4.0~6.0", minimum=1.0, maximum=10.0, step=0.1, value=4.5)
+                guidance_scale = gr.Slider(label="guidance scale", info="修改分段长度后调整，推荐范围3.0~6.0", minimum=1.0, maximum=10.0, step=0.1, value=4.5)
                 audio_guidance_scale = gr.Slider(label="audio guidance scale", info="修改分段长度后调整，推荐范围2.0~3.0", minimum=1.0, maximum=10.0, step=0.1, value=2.5)
-                seed_param = gr.Number(label="种子，请输入正整数，-1为随机", value=-1)
+                seed_param = gr.Number(label="种子，请输入正整数，-1为随机", value=43)
                 generate_button = gr.Button("🎬 开始生成", variant='primary')
             with gr.Column():
                 video_output = gr.Video(label="生成结果", interactive=False)
