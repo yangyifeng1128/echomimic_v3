@@ -89,8 +89,13 @@ For more demo videos, please refer to the [project page](https://antgroup.github
 - Tested System Environment: Centos 7.2/Ubuntu 22.04, Cuda >= 12.1
 - Tested GPUs: A100(80G) / RTX4090D (24G) / V100(16G)
 - Tested Python Version: 3.10 / 3.11
+- 
+### 🛠️Installation for Windows
 
-### 🛠️Installation
+##### Please use the [one-click installation package](https://pan.baidu.com/share/init?surl=cV7i2V0wF4exDtKjJrAUeA) to get started quickly for Quantified version.
+
+
+### 🛠️Installation for Linux
 #### 1. Create a conda environment
 ```
 conda create -n echomimic_v3 python=3.10
