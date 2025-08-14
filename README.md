@@ -93,7 +93,7 @@ For more demo videos, please refer to the [project page](https://antgroup.github
 - 
 ### 🛠️Installation for Windows
 
-##### Please use the [one-click installation package](https://pan.baidu.com/share/init?surl=cV7i2V0wF4exDtKjJrAUeA) to get started quickly for Quantified version.
+##### <a href='https://github.com/antgroup/echomimic_v3'><img src='https://img.shields.io/github/stars/antgroup/echomimic_v3?style=social'></a> Please use the [one-click installation package](https://pan.baidu.com/share/init?surl=cV7i2V0wF4exDtKjJrAUeA) to get started quickly for Quantified version.
 
 
 ### 🛠️Installation for Linux
