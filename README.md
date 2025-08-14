@@ -70,16 +70,16 @@ Terminal Technology Department, Alipay, Ant Group.
 <table class="center">
 <tr>
     <td width=25% style="border: none">
-        <video controls loop src="https://github.com/user-attachments/assets/306dd246-0873-4fef-83a2-738b560a0af1" muted="false"></video>
+        <video controls loop src="https://github.com/user-attachments/assets/fc1ebae4-b571-43eb-a13a-7d6d05b74082" muted="false"></video>
     </td>
     <td width=25% style="border: none">
-        <video controls loop src="https://github.com/user-attachments/assets/7b12335a-88e3-46f8-8577-356e1c00cbdd" muted="false"></video>
+        <video controls loop src="https://github.com/user-attachments/assets/54607cc7-944c-4529-9bef-715862ba330d" muted="false"></video>
     </td>
     <td width=25% style="border: none">
-        <video controls loop src="https://github.com/user-attachments/assets/ea40f327-c57a-4a5d-a852-a8e12df041f3" muted="false"></video>
+        <video controls loop src="https://github.com/user-attachments/assets/4d1de999-cce2-47ab-89ed-f2fa11c838fe" muted="false"></video>
     </td>
     <td width=25% style="border: none">
-        <video controls loop src="https://github.com/user-attachments/assets/6fea35a3-dc80-43a7-83b3-f24c97113619" muted="false"></video>
+        <video controls loop src="https://github.com/user-attachments/assets/41e701cc-ac3e-4dd8-b94c-859261f17344" muted="false"></video>
     </td>
 </tr>
 </table>
