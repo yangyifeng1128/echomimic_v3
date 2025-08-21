@@ -515,6 +515,9 @@ class WanFunInpaintAudioPipeline(DiffusionPipeline):
         comfyui_progressbar: bool = False,
         cfg_skip_ratio: int = None,
         shift: int = 5,
+        use_longvideo_cfg=False,
+        overlap_video_length=5,
+        partial_video_length=113,
     ) -> Union[WanPipelineOutput, Tuple]:
         """
         Function invoked when calling the pipeline for generation.
@@ -525,6 +528,7 @@ class WanFunInpaintAudioPipeline(DiffusionPipeline):
         Returns:
 
         """
+        # self.config = config
 
         if isinstance(callback_on_step_end, (PipelineCallback, MultiPipelineCallbacks)):
             callback_on_step_end_tensor_inputs = callback_on_step_end.tensor_inputs
@@ -546,7 +550,12 @@ class WanFunInpaintAudioPipeline(DiffusionPipeline):
         self._interrupt = False
 
         # 2. Default call parameters
-        batch_size = 1
+        if prompt is not None and isinstance(prompt, str):
+            batch_size = 1
+        elif prompt is not None and isinstance(prompt, list):
+            batch_size = len(prompt)
+        else:
+            batch_size = prompt_embeds.shape[0]
 
         device = self._execution_device
         weight_dtype = self.text_encoder.dtype
@@ -557,17 +566,16 @@ class WanFunInpaintAudioPipeline(DiffusionPipeline):
         do_classifier_free_guidance = guidance_scale > 1.0
 
         # 3. Encode input prompt
-        if not prompt_embeds or not negative_prompt_embeds:
-            prompt_embeds, negative_prompt_embeds = self.encode_prompt(
-                prompt,
-                negative_prompt,
-                do_classifier_free_guidance,
-                num_videos_per_prompt=num_videos_per_prompt,
-                prompt_embeds=prompt_embeds,
-                negative_prompt_embeds=negative_prompt_embeds,
-                max_sequence_length=max_sequence_length,
-                device=device,
-            )
+        prompt_embeds, negative_prompt_embeds = self.encode_prompt(
+            prompt,
+            negative_prompt,
+            do_classifier_free_guidance,
+            num_videos_per_prompt=num_videos_per_prompt,
+            prompt_embeds=prompt_embeds,
+            negative_prompt_embeds=negative_prompt_embeds,
+            max_sequence_length=max_sequence_length,
+            device=device,
+        )
         if do_classifier_free_guidance:
             in_prompt_embeds = negative_prompt_embeds + prompt_embeds + prompt_embeds
         else:
@@ -652,6 +660,8 @@ class WanFunInpaintAudioPipeline(DiffusionPipeline):
                 mask_condition = mask_condition.view(bs, mask_condition.shape[2] // 4, 4, height, width)
                 mask_condition = mask_condition.transpose(1, 2)
                 mask_latents = resize_mask(1 - mask_condition, masked_video_latents, True).to(device, weight_dtype) 
+            
+
 
         # Prepare clip latent variables
         if clip_image is not None:
@@ -678,73 +688,74 @@ class WanFunInpaintAudioPipeline(DiffusionPipeline):
             audio_embeds = torch.cat([negative_audio_embeds, negative_audio_embeds, audio_embeds], dim=0)
         else:
             audio_embeds = audio_embeds
-        with self.progress_bar(total=num_inference_steps) as progress_bar:
-            for i, t in enumerate(timesteps):
-                if do_classifier_free_guidance:
-                    if i <= neg_steps:
-                        neg_scale_ = neg_scale
+        if not use_longvideo_cfg:
+            print('not use long video cfg')
+            with self.progress_bar(total=num_inference_steps) as progress_bar:
+                for i, t in enumerate(timesteps):
+                    if do_classifier_free_guidance:
+                        if i <= neg_steps:
+                            neg_scale_ = neg_scale
+                        else:
+                            neg_scale_ = 1.
+                        negative_prompt_embeds = [negative_prompt_embed * neg_scale_ for negative_prompt_embed in negative_prompt_embeds]
+                        # in_prompt_embeds = negative_prompt_embeds + negative_prompt_embeds + prompt_embeds
+                        in_prompt_embeds = negative_prompt_embeds + prompt_embeds + prompt_embeds
                     else:
-                        neg_scale_ = 1.
-                    negative_prompt_embeds = [negative_prompt_embed * neg_scale_ for negative_prompt_embed in negative_prompt_embeds]
-                    in_prompt_embeds = negative_prompt_embeds + prompt_embeds + prompt_embeds
-                else:
-                    in_prompt_embeds = prompt_embeds
-                    
-                if cfg_skip_ratio is not None and i >= num_inference_steps * (1 - cfg_skip_ratio):
-                    do_classifier_free_guidance = False
-                    in_prompt_embeds = prompt_embeds
-
-                if self.interrupt:
-                    continue
-
-                latent_model_input = torch.cat([latents] * 3) if do_classifier_free_guidance else latents
-                if hasattr(self.scheduler, "scale_model_input"):
-                    latent_model_input = self.scheduler.scale_model_input(latent_model_input, t)
-
-                if init_video is not None:
-                    mask_input = torch.cat([mask_latents] * 3) if do_classifier_free_guidance else mask_latents
-                    masked_video_latents_input = (
-                        torch.cat([masked_video_latents] * 3) if do_classifier_free_guidance else masked_video_latents
-                    )
-                    y = torch.cat([mask_input, masked_video_latents_input], dim=1).to(device, weight_dtype) 
-
-                clip_context_input = (
-                    torch.cat([clip_context] * 3) if do_classifier_free_guidance else clip_context
-                )
-
-                # broadcast to batch dimension in a way that's compatible with ONNX/Core ML
-                timestep = t.expand(latent_model_input.shape[0])
-
-                # predict noise model_output
-                with torch.cuda.amp.autocast(dtype=weight_dtype):
-                    noise_pred = self.transformer(
-                        x=latent_model_input,
-                        context=(in_prompt_embeds, audio_embeds, latent_model_input.shape[2], ip_mask, audio_scale),
-                        t=timestep,
-                        seq_len=seq_len,
-                        y=y,
-                        clip_fea=clip_context_input,
-                    )
-                
-                # perform guidance
-                if do_classifier_free_guidance:
-                    """
-                    crop cfg
-                    """
-                    if use_dynamic_cfg:    
-                        self._guidance_scale = (guidance_scale/2 + (guidance_scale/2) * (
-                            (1 - math.cos(math.pi * ((num_inference_steps - i) / num_inference_steps) ** 5.)) / 2))
+                        in_prompt_embeds = prompt_embeds
                         
-                    if use_dynamic_acfg:
-                        self._audio_guidance_scale = (audio_guidance_scale/2 + (audio_guidance_scale/2) * (
-                        (1 - math.cos(math.pi * ((num_inference_steps - i) / num_inference_steps) ** 5.)) / 2))
+                    if cfg_skip_ratio is not None and i >= num_inference_steps * (1 - cfg_skip_ratio):
+                        do_classifier_free_guidance = False
+                        in_prompt_embeds = prompt_embeds
 
-                    noise_pred_uncond, noise_pred_drop_audio, noise_pred_cond = noise_pred.chunk(3)
-                    
-                    noise_pred = noise_pred_uncond + self.guidance_scale * (noise_pred_drop_audio - noise_pred_uncond) + self.audio_guidance_scale * (noise_pred_cond - noise_pred_drop_audio)
-                    
-                # compute the previous noisy sample x_t -> x_t-1
-                latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs, return_dict=False)[0]
+                    if self.interrupt:
+                        continue
+
+                    latent_model_input = torch.cat([latents] * 3) if do_classifier_free_guidance else latents
+                    if hasattr(self.scheduler, "scale_model_input"):
+                        latent_model_input = self.scheduler.scale_model_input(latent_model_input, t)
+
+                    if init_video is not None:
+                        mask_input = torch.cat([mask_latents] * 3) if do_classifier_free_guidance else mask_latents
+                        masked_video_latents_input = (
+                            torch.cat([masked_video_latents] * 3) if do_classifier_free_guidance else masked_video_latents
+                        )
+                        y = torch.cat([mask_input, masked_video_latents_input], dim=1).to(device, weight_dtype) 
+
+                    clip_context_input = (
+                        torch.cat([clip_context] * 3) if do_classifier_free_guidance else clip_context
+                    )
+
+                    # broadcast to batch dimension in a way that's compatible with ONNX/Core ML
+                    timestep = t.expand(latent_model_input.shape[0])
+
+                    # predict noise model_output
+                    with torch.cuda.amp.autocast(dtype=weight_dtype):
+                        noise_pred = self.transformer(
+                            x=latent_model_input,
+                            context=(in_prompt_embeds, audio_embeds, latent_model_input.shape[2], ip_mask, audio_scale),
+                            t=timestep,
+                            seq_len=seq_len,
+                            y=y,
+                            clip_fea=clip_context_input,
+                        )
+                    # perform guidance
+                    if do_classifier_free_guidance:
+                        """
+                        crop cfg
+                        """
+                        if use_dynamic_cfg:    
+                            self._guidance_scale = (guidance_scale/2 + (guidance_scale/2) * (
+                                (1 - math.cos(math.pi * ((num_inference_steps - i) / num_inference_steps) ** 5.)) / 2))
+                            
+                        if use_dynamic_acfg:
+                            self._audio_guidance_scale = (audio_guidance_scale/2 + (audio_guidance_scale/2) * (
+                            (1 - math.cos(math.pi * ((num_inference_steps - i) / num_inference_steps) ** 5.)) / 2))
+
+                        noise_pred_uncond, noise_pred_drop_audio, noise_pred_cond = noise_pred.chunk(3)
+                        noise_pred = noise_pred_uncond + self.guidance_scale * (noise_pred_drop_audio - noise_pred_uncond) + self.audio_guidance_scale * (noise_pred_cond - noise_pred_drop_audio)
+                        
+                    # compute the previous noisy sample x_t -> x_t-1
+                    latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs, return_dict=False)[0]
 
                 if callback_on_step_end is not None:
                     callback_kwargs = {}
@@ -760,6 +771,121 @@ class WanFunInpaintAudioPipeline(DiffusionPipeline):
                     progress_bar.update()
                 if comfyui_progressbar:
                     pbar.update(1)
+
+        else:
+            print('use long video cfg')
+            final_latents = latents.clone()
+            partial_latents_length = int((partial_video_length-1) // self.vae.temporal_compression_ratio +1)
+            final_latents_length = final_latents.shape[2]
+            
+            with self.progress_bar(total=num_inference_steps) as progress_bar:
+                for i, t in enumerate(timesteps):
+                    if self.interrupt:
+                        continue
+
+                    new_latents = torch.zeros_like(final_latents, dtype=weight_dtype, device=device)
+                    end_flag = False
+                    init_frame = 0
+                    last_frame = init_frame + partial_latents_length
+                    left_last_frame = last_frame
+                    
+                    while last_frame <= final_latents_length:
+                        self.scheduler._step_index = None
+                        idx_list = [ii % final_latents.shape[2] for ii in range(init_frame, last_frame)]
+
+                        audio_token_per_frame = 2 * self.vae.config.temporal_compression_ratio
+                        max_audio_index = audio_embeds.shape[1]
+                        
+                        if last_frame == final_latents_length:
+                            idx_list_audio = [ii % max_audio_index for ii in range(init_frame * audio_token_per_frame, max_audio_index)]
+                        else:
+                            clip_length = len(idx_list)
+                            idx_list_audio = [ii % max_audio_index for ii in range(init_frame * audio_token_per_frame, init_frame * audio_token_per_frame + clip_length * audio_token_per_frame)]
+
+                        latents = final_latents[:, :, idx_list].clone()
+                        partial_audio_embeds = audio_embeds[:, idx_list_audio]
+                        
+                        latent_model_input = torch.cat([latents] * 3) if do_classifier_free_guidance else latents
+                        if hasattr(self.scheduler, "scale_model_input"):
+                            latent_model_input = self.scheduler.scale_model_input(latent_model_input, t)
+                        
+                        if init_video is not None:
+                            partial_mask_input = mask_latents
+                            partial_masked_video_latents_input = masked_video_latents
+
+                            if do_classifier_free_guidance:
+                                partial_mask_input = torch.cat([partial_mask_input] * 3, dim=0)
+                                partial_masked_video_latents_input = torch.cat([partial_masked_video_latents_input] * 3, dim=0)
+                            y = torch.cat([partial_mask_input, partial_masked_video_latents_input], dim=1).to(device, weight_dtype)
+                        else:
+                            y = None
+                        
+                        clip_context_input = torch.cat([clip_context] * 3) if do_classifier_free_guidance else clip_context
+                        
+                        
+                        timestep = t.expand(latent_model_input.shape[0])
+                        cur_latent_t = latents.size()[2]
+                        target_shape = (self.vae.latent_channels, cur_latent_t, width // self.vae.spacial_compression_ratio, height // self.vae.spacial_compression_ratio)
+                        seq_len = math.ceil((target_shape[2] * target_shape[3]) / (self.transformer.config.patch_size[1] * self.transformer.config.patch_size[2]) * target_shape[1])
+                        
+                        
+                        with torch.cuda.amp.autocast(dtype=weight_dtype):
+                            noise_pred = self.transformer(
+                                x=latent_model_input,
+                                context=(in_prompt_embeds, partial_audio_embeds, cur_latent_t, ip_mask, audio_scale),
+                                t=timestep,
+                                seq_len=seq_len,
+                                y=y[:, :, :cur_latent_t] if y is not None else None,
+                                clip_fea=clip_context_input,
+                            )
+                        
+                        if do_classifier_free_guidance:
+                            if use_dynamic_cfg:    
+                                self._guidance_scale = (guidance_scale/2 + (guidance_scale/2) * (
+                                    (1 - math.cos(math.pi * ((num_inference_steps - i) / num_inference_steps) ** 5.)) / 2))
+                            if use_dynamic_acfg:
+                                self._audio_guidance_scale = (audio_guidance_scale/2 + (audio_guidance_scale/2) * (
+                                (1 - math.cos(math.pi * ((num_inference_steps - i) / num_inference_steps) ** 5.)) / 2))
+                            
+                            noise_pred_uncond, noise_pred_drop_audio, noise_pred_cond = noise_pred.chunk(3)
+                            noise_pred = noise_pred_uncond + self.guidance_scale * (noise_pred_drop_audio - noise_pred_uncond) + self.audio_guidance_scale * (noise_pred_cond - noise_pred_drop_audio)
+                        latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs, return_dict=False)[0]
+                        torch.cuda.empty_cache()
+                        
+                        if init_frame != 0 and i != 0:
+                            mix_ratio = torch.linspace(0, 1, overlap_video_length, device=device, dtype=weight_dtype).view(1, 1, -1, 1, 1)
+                            
+                            overlap_idx_list_start = [ii % latents.shape[2] for ii in range(0, overlap_video_length)]
+                            overlap_idx_list_end = [ii % final_latents.shape[2] for ii in range(left_last_frame-overlap_video_length, left_last_frame)]
+                            latents[:, :, overlap_idx_list_start] = latents[:, :, overlap_idx_list_start] * mix_ratio + new_latents[:, :, overlap_idx_list_end] * (1-mix_ratio)
+                            latents = latents.to(weight_dtype)
+                            for iii in range(cur_latent_t):
+                                p = (init_frame + iii) % new_latents.shape[2]
+                                new_latents[:, :, p] = latents[:, :, iii]
+                        else:
+                            latents = latents.to(weight_dtype)
+                            for iii in range(cur_latent_t):
+                                p = (init_frame + iii) % new_latents.shape[2]
+                                new_latents[:, :, p] = latents[:, :, iii]
+                                
+                        if end_flag:
+                            break
+                            
+                        if last_frame != final_latents_length:
+                            left_last_frame = last_frame
+                            init_frame = init_frame + (partial_latents_length - overlap_video_length)
+                            if (init_frame + partial_latents_length) < final_latents_length:
+                                last_frame = init_frame + partial_latents_length
+                            else:
+                                last_frame = final_latents_length
+                                end_flag = True
+                                
+                    final_latents = new_latents
+                    
+                    if i == len(timesteps) - 1 or ((i + 1) > num_warmup_steps and (i + 1) % self.scheduler.order == 0):
+                        progress_bar.update()
+                        
+            latents = final_latents.float()[:, :, :final_latents_length].to(device)
 
         if output_type == "numpy":
             video = self.decode_latents(latents)
