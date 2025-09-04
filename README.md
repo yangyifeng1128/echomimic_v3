@@ -151,10 +151,8 @@ python app_mm.py
 |    ✅    | The inference code of EchoMimicV3 meet everyone on GitHub   | 
 |    ✅   | EchoMimicV3-preview model on HuggingFace | 
 |    ✅   | EchoMimicV3-preview model on ModelScope | 
-|    🚀  | ModelScope Space | 
-|    🚀    | Preview version Pretrained models trained on English and Chinese on ModelScope   | 
-|    🚀    | 720P Pretrained models trained on English and Chinese on HuggingFace | 
-|    🚀    | 720P Pretrained models trained on English and Chinese on ModelScope   | 
+|    ✅  | ModelScope Space | 
+|    🚀    | 720P Pretrained models | 
 |    🚀    | The training code of EchoMimicV3 meet everyone on GitHub   | 
 
 
