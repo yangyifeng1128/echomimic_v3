@@ -72,7 +72,7 @@ class Config:
         # Inference parameters
         self.negative_prompt = "Gesture is bad. Gesture is unclear. Strange and twisted hands. Bad hands. Bad fingers. Unclear and blurry hands. 手部快速摆动, 手指频繁抽搐, 夸张手势, 重复机械性动作."#Unclear gestures, broken hands, more than five fingers on one hand, extra fingers, fused fingers. "# Strange body and strange trajectory. Distortion.  "
 
-        self.use_longvideo_cfg = True
+        self.use_longvideo_cfg = False
         self.partial_video_length = 113
         self.overlap_video_length = 8
         self.neg_scale = 1.5
