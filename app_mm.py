@@ -46,7 +46,7 @@ import random
 import gc
 
 parser = argparse.ArgumentParser() 
-parser.add_argument("--server_name", type=str, default="127.0.0.1", help="IP地址，局域网访问改为0.0.0.0")
+parser.add_argument("--server_name", type=str, default="0.0.0.0", help="IP地址，局域网访问改为0.0.0.0")
 parser.add_argument("--server_port", type=int, default=7891, help="使用端口")
 parser.add_argument("--share", action="store_true", help="是否启用gradio共享")
 parser.add_argument("--mcp_server", action="store_true", help="是否启用mcp服务")
