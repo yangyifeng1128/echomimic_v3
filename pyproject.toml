@@ -37,6 +37,8 @@ dependencies = [
     "retina-face==0.0.17",
     "librosa",
     "mmgp",
+    "huggingface-hub[cli]>=0.34.5",
+    "tf-keras>=2.16.0",
 ]
 
 [tool.ruff]
