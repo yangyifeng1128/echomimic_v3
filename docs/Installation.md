@@ -54,7 +54,7 @@ A: 默认 HuggingFace 的缓存目录为 `/root/.cache`，可以通过以下命�
 在 `~/.bashrc` 文件的末尾，追加以下内容并保存：
 
 ```sh
-export HF_HOME=/root/autodl-tmp/cache
+export HF_HOME=/root/autodl-tmp/cache/hf
 export HF_ENDPOINT=https://hf-mirror.com
 ```
 
@@ -64,15 +64,21 @@ export HF_ENDPOINT=https://hf-mirror.com
 source ~/.bashrc
 ```
 
-## 1.3 设置镜像服务器
+## 1.3 设置网络代理
 
 参考资料：
 - https://www.autodl.com/docs/network_turbo/
 
-在终端下，执行以下命令，设置 AutoDL 镜像服务器：
+在终端下，执行以下命令，设置 AutoDL 网络代理：
 
 ```sh
 source /etc/network_turbo
+```
+
+在终端下，执行以下命令，取消 AutoDL 网络代理：
+
+```sh
+unset http_proxy && unset https_proxy
 ```
 
 ## 1.4 安装 uv 与项目依赖包
@@ -85,4 +91,16 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # 使 uv 命令立即生效
 source ~/.local/bin/env
+```
+
+修改 uv 缓存目录：在 `~/.bashrc` 文件的末尾，追加以下内容并保存：
+
+```sh
+export UV_CACHE_DIR=/root/autodl-tmp/cache/uv
+```
+
+在终端下，执行以下命令，使环境变量立即生效：
+
+```sh
+source ~/.bashrc
 ```
