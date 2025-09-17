@@ -63,3 +63,14 @@ uv run app_mm.py
 
 参考资料：
 - https://www.autodl.com/docs/proxy_in_instance/
+
+## 1.5 计算性能分析
+
+参考资料：
+- https://www.autodl.com/docs/perf/
+
+在终端下，执行以下命令，查看 GPU 使用率：
+
+```sh
+nvidia-smi -l 1
+```
