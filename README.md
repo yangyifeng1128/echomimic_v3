@@ -3,9 +3,9 @@
 # 一、快速开始
 
 ## 1.1 测试配置
-- 操作系统：Ubuntu 22.04, Cuda >= 12.8
-- GPU：RTX 5090 (32GB)
-- Python：3.12
+- 操作系统：Ubuntu 22.04, CUDA 12.4
+- GPU：H800 (80GB)
+- Python：3.11
 
 ## 1.2 安装
 
@@ -44,7 +44,7 @@ uv run hf download BadToBest/EchoMimicV3 --local-dir ./
     └── diffusion_pytorch_model.safetensors
 ```
 
-## 1.3 快速推理
+## 1.3 开始推理
 
 ```
 uv run app_mm.py
