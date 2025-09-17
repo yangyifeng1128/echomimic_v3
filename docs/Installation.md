@@ -3,7 +3,7 @@
 ## 1.1 使用守护进程终端
 
 参考资料：
-- https://www.autodl.com/docs/daemon/
+> https://www.autodl.com/docs/daemon/
 
 在终端下，执行以下命令：
 
@@ -41,12 +41,12 @@ A: 如果有正在执行的任务，使用快捷键 `Control + C` 结束任务�
 ## 1.1 清理系统盘空间
 
 参考资料：
-- https://www.autodl.com/docs/qa1/
+> https://www.autodl.com/docs/qa1/
 
 ## 1.2 设置网络代理
 
 参考资料：
-- https://www.autodl.com/docs/network_turbo/
+> https://www.autodl.com/docs/network_turbo/
 
 在终端下，执行以下命令，设置 AutoDL 网络代理：
 
