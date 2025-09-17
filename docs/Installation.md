@@ -43,28 +43,7 @@ A: 如果有正在执行的任务，使用快捷键 `Control + C` 结束任务�
 参考资料：
 - https://www.autodl.com/docs/qa1/
 
-## 1.2 使用数据盘空间
-
-### 1.2.1 修改 HuggingFace 缓存目录
-
-Q1: 如何解决 HuggingFace 下载的模型文件占用系统盘空间太大，导致系统盘空间不足的问题？
-
-A: 默认 HuggingFace 的缓存目录为 `/root/.cache`，可以通过以下命令永久修改 HuggingFace 的缓存目录：
-
-在 `~/.bashrc` 文件的末尾，追加以下内容并保存：
-
-```sh
-export HF_HOME=/root/autodl-tmp/cache/hf
-export HF_ENDPOINT=https://hf-mirror.com
-```
-
-在终端下，执行以下命令，使环境变量立即生效：
-
-```sh
-source ~/.bashrc
-```
-
-## 1.3 设置网络代理
+## 1.2 设置网络代理
 
 参考资料：
 - https://www.autodl.com/docs/network_turbo/
@@ -81,7 +60,7 @@ source /etc/network_turbo
 unset http_proxy && unset https_proxy
 ```
 
-## 1.4 安装 uv 与项目依赖包
+## 1.3 安装 uv 与项目依赖包
 
 在终端下，执行以下命令：
 
@@ -91,12 +70,34 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # 使 uv 命令立即生效
 source ~/.local/bin/env
+
+# 查看 uv 版本
+uv --version
 ```
 
-修改 uv 缓存目录：在 `~/.bashrc` 文件的末尾，追加以下内容并保存：
+Q: 如何修改 uv 缓存文件目录？
+
+A: 在 `~/.bashrc` 文件的末尾，追加以下内容并保存：
 
 ```sh
 export UV_CACHE_DIR=/root/autodl-tmp/cache/uv
+```
+
+在终端下，执行以下命令，使环境变量立即生效：
+
+```sh
+source ~/.bashrc
+```
+
+Q: 如何修改 HuggingFace 缓存文件目录，以解决下载的模型文件占用系统盘空间过大，导致系统盘空间不足的问题？
+
+A: 默认 HuggingFace 的缓存目录为 `/root/.cache`，可以通过以下命令永久修改 HuggingFace 的缓存目录：
+
+在 `~/.bashrc` 文件的末尾，追加以下内容并保存：
+
+```sh
+export HF_HOME=/root/autodl-tmp/cache/hf
+export HF_ENDPOINT=https://hf-mirror.com
 ```
 
 在终端下，执行以下命令，使环境变量立即生效：
